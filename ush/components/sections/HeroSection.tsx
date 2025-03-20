@@ -11,10 +11,10 @@ export const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
-            Discrete wealth management for discerning clients
+            Silence is the new luxury
           </h1>
           <p className="text-lg md:text-xl text-zinc-400 mb-8 max-w-xl">
-            Hush provides elite financial services with the utmost privacy and personalized attention for high-net-worth individuals.
+            Hush provee servicios financieros de elite con el más alto nievl de confidencialidad y personalizacion para nuestros clientes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             {/* All buttons with consistent height and styling */}

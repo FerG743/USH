@@ -6,18 +6,18 @@ export const ServicesSection = () => {
   const services = [
     {
       icon: TrendingUp,
-      title: "Wealth Management",
-      description: "Sophisticated portfolio strategies designed to preserve and grow significant assets."
+      title: "Financiamiento personalizado",
+      description: "Asistencia personalizada durante  la duración del proceso de financiamiento."
     },
     {
       icon: Shield,
-      title: "Asset Protection",
-      description: "Discreet structures that safeguard wealth across generations and jurisdictions."
+      title: "Proteccion del cliente",
+      description:  "Estructuras de financiamiento discretas que te protegen ante malos actores."
     },
     {
       icon: Lock,
-      title: "Private Banking",
-      description: "Exclusive banking solutions with enhanced privacy and personalized service."
+      title: "Créditos amigables",
+      description: "Hush comprende el valor de tus pertenencias, es por eso que nos comprometemos a valuarlas adecuadamente, asimismo ofrecer plazos amigables de financiamiento."
     }
   ];
 
