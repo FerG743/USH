@@ -1,23 +1,17 @@
-
+// app/page.tsx
 import React from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { ServicesSection } from '@/components/sections/ServicesSection';
-import { ApproachSection } from '@/components/sections/ApproachSection';
-import { TestimonialSection } from '@/components/sections/TestimonialSection';
+import { ServicesHighlightSection } from '@/components/sections/ServicesHighlightSection';
+import { ProductsPreviewSection } from '@/components/sections/ProductsPreviewSection';
 import { CtaSection } from '@/components/sections/CtaSection';
 
-export default function HushFinanceHomepage() {
+export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
-      <Header />
+    <main>
       <HeroSection />
-      <ServicesSection />
-      <ApproachSection />
-      <TestimonialSection />
+      <ServicesHighlightSection />
+      <ProductsPreviewSection />
       <CtaSection />
-      <Footer />
-    </div>
+    </main>
   );
 }

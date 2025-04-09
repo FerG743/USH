@@ -123,15 +123,109 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Override navigation menu animations */
+  .NavigationMenuContent,
+  .NavigationMenuContent[data-motion="from-start"],
+  .NavigationMenuContent[data-motion="from-end"],
+  .NavigationMenuContent[data-motion="to-start"],
+  .NavigationMenuContent[data-motion="to-end"] {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: opacity 150ms ease;
+  }
+  
+  /* Remove rounded corners from all navigation elements */
+  .NavigationMenuContent,
+  .NavigationMenuLink,
+  .NavigationMenuTrigger,
+  .NavigationMenuItem a {
+    border-radius: 0 !important;
+  }
+  
+  /* Fix navigation menu alignment issues */
+  [data-slot="navigation-menu"] {
+    justify-content: flex-start !important;
+  }
+  
+  [data-slot="navigation-menu-list"] {
+    justify-content: flex-start !important;
+  }
+  
+  [data-slot="navigation-menu-trigger"] {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+  
+  [data-slot="navigation-menu-link"] {
+    text-align: left !important;
+  }
+  
+  [data-slot="navigation-menu-viewport"] {
+    justify-content: flex-start !important;
+  }
+  
+  [data-slot="navigation-menu-content"] {
+    text-align: left !important;
+  }
+  
+  /* Override any centering in Radix Navigation components */
+  [data-radix-navigation-menu-root] {
+    justify-content: flex-start !important;
+  }
+  
+  [data-radix-navigation-menu-list] {
+    justify-content: flex-start !important;
+  }
+  
+  [data-radix-navigation-menu-trigger] {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
 }
 
 @layer components {
   /* Custom button styles for HUSH website */
   .hush-btn-primary {
-    @apply bg-white text-black hover:bg-zinc-200 rounded-none px-6 py-6 text-sm font-medium transition-colors;
+    @apply bg-white text-black hover:bg-zinc-200 rounded-none px-6 py-6 text-sm font-medium transition-colors text-left justify-start;
   }
   
   .hush-btn-outline {
-    @apply border border-zinc-700 text-white hover:bg-zinc-900 hover:text-white rounded-none px-6 py-6 text-sm font-medium transition-colors;
+    @apply border border-zinc-700 text-white hover:bg-zinc-900 hover:text-white rounded-none px-6 py-6 text-sm font-medium transition-colors text-left justify-start;
+  }
+  
+  /* Add navigation style overrides */
+  .hush-navigation-content {
+    @apply p-0 border border-zinc-800 shadow-md bg-zinc-900 text-left;
+  }
+  
+  .hush-navigation-item {
+    @apply flex items-center p-3 hover:bg-zinc-800 transition-colors duration-150 text-left justify-start;
+  }
+  
+  /* Fix Radix navigation menu border colors */
+  [data-radix-navigation-menu-content],
+  [data-radix-navigation-menu-viewport] {
+    @apply border-zinc-800 bg-zinc-900 text-white;
+  }
+  
+  /* Fix for centering issues in navigation menu */
+  [data-radix-navigation-menu-content] {
+    display: block !important;
+    text-align: left !important;
+  }
+  
+  /* Fix alignment in NavigationMenu component */
+  div[role="navigation"] {
+    justify-content: flex-start !important;
+  }
+  
+  /* Fix any possible centering in menu items */
+  .NavigationMenuContent ul,
+  .NavigationMenuContent li,
+  .NavigationMenuContent a {
+    text-align: left !important;
+    justify-content: flex-start !important;
   }
 }
