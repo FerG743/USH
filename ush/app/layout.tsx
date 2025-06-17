@@ -9,7 +9,7 @@ import { Footer } from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HUSH Financiera | Servicios Financieros Confidenciales',
+  title: 'HUSH Finance | Servicios Financieros',
   description: 'HUSH Financiera es una SOFOM no regulada que ofrece productos y servicios financieros con el más alto nivel de confidencialidad y personalización.',
   keywords: 'crédito personal, microcrédito, crédito prendario, factoraje, financiamiento, SOFOM, servicios financieros',
 };

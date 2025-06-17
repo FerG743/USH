@@ -195,4 +195,3 @@ interface ProductCardProps {
     details: string;
   };
 }
-

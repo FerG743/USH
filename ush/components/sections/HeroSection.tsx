@@ -4,7 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Calculator, Shield } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { LoanSimulator } from '../forms/LoanSimulator';
+import LoanSimulator from '../forms/LoanSimulator';
 import { motion } from "framer-motion";
 
 export const HeroSection = () => {
@@ -52,16 +52,6 @@ export const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <div className="grid sm:grid-cols-3 gap-4 w-full">
-              <motion.div whileHover={subtleHover}>
-                <Button 
-                  variant="default"
-                  className="bg-white text-black hover:bg-zinc-200 rounded-none h-14 px-6 text-sm font-medium transition-colors flex items-center justify-center w-full"
-                >
-                  Agendar Consulta
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </motion.div>
-              
               <Dialog>
                 <DialogTrigger asChild>
                   <motion.div whileHover={subtleHover}>
@@ -74,7 +64,7 @@ export const HeroSection = () => {
                     </Button>
                   </motion.div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md bg-black border-zinc-800 text-white">
+                <DialogContent className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl bg-black border-zinc-800 text-white">
                   <DialogHeader>
                     <DialogTitle className="text-white">Simulador de Crédito</DialogTitle>
                     <DialogDescription className="text-zinc-400">
@@ -86,7 +76,6 @@ export const HeroSection = () => {
                   </div>
                 </DialogContent>
               </Dialog>
-              
               <motion.div whileHover={subtleHover}>
                 <Button 
                   variant="outline" 
