@@ -1,3 +1,4 @@
+// app/productos/[slug]/page.tsx
 "use client";
 import React, { use } from 'react';
 import Link from 'next/link';
@@ -241,9 +242,10 @@ export default function ProductDetailsPage({ params }: ProductDetailsProps) {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mb-8"
           >
-            <Link href="/productos" className="inline-flex items-center text-zinc-400 hover:text-white transition-colors">
+            {/* CHANGED: Link now points to homepage instead of /productos */}
+            <Link href="/" className="inline-flex items-center text-zinc-400 hover:text-white transition-colors">
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Volver a Productos
+              Volver al Inicio
             </Link>
           </motion.div>
           
