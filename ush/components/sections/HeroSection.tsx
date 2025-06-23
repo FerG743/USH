@@ -1,6 +1,7 @@
 // components/sections/HeroSection.tsx
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Calculator, Shield } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -51,7 +52,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <div className="grid sm:grid-cols-3 gap-4 w-full">
+            <div className="grid sm:grid-cols-2 gap-4 w-full">
               <Dialog>
                 <DialogTrigger asChild>
                   <motion.div whileHover={subtleHover}>
@@ -76,6 +77,7 @@ export const HeroSection = () => {
                   </div>
                 </DialogContent>
               </Dialog>
+              
               <motion.div whileHover={subtleHover}>
                 <Button 
                   variant="outline" 

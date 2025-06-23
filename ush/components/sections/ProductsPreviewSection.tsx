@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
 const products = {
   credits: [
     {
@@ -22,8 +23,6 @@ const products = {
       summary: "Diseñado para emprendedores y micronegocios con montos hasta 30 mil UDIS.",
       details: "Plazo máximo de 3 años, opciones individuales o grupales, y asesoría especializada para maximizar el rendimiento de tu inversión."
     },
-  ],
-  specialized: [
     {
       id: "credito-prendario",
       title: "Crédito Prendario HUSH",
@@ -37,6 +36,16 @@ const products = {
       tagline: "Financiamiento especializado para pequeñas y medianas empresas",
       summary: "Soluciones adaptadas al ciclo de negocio de tu empresa.",
       details: "Montos y plazos personalizados, opciones para personas físicas y morales, y evaluación especializada considerando el potencial de tu empresa."
+    }
+   
+  ],
+  specialized: [
+    {
+      id: "prestamos-especializados",
+      title: "Préstamos Especializados",
+      tagline: "Soluciones financieras para casos y necesidades particulares",
+      summary: "Productos diseñados para atender necesidades específicas que no se cubren con productos tradicionales.",
+      details: "Incluye créditos para emprendedores, financiamiento estacional, préstamos para equipo tecnológico y otras soluciones personalizadas según tu situación particular."
     }
   ]
 };
@@ -59,8 +68,8 @@ export const ProductsPreviewSection = () => {
           className="flex flex-col md:flex-row justify-between items-start mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4 md:mb-0">Productos Financieros</h2>
-          <Link href="/productos" className="text-zinc-400 hover:text-white transition-colors">
-            Ver todos los productos →
+          <Link href="/contacto" className="text-zinc-300 hover:text-white transition-colors font-medium">
+            Hablar con un Asesor →
           </Link>
         </motion.div>
 
@@ -71,10 +80,16 @@ export const ProductsPreviewSection = () => {
             transition={{ duration: 0.4, delay: 0.3 }}
           >
             <TabsList className="mb-8 bg-zinc-900 mx-auto justify-center">
-              <TabsTrigger value="credits" className="data-[state=active]:bg-white data-[state=active]:text-black">
+              <TabsTrigger 
+                value="credits" 
+                className="data-[state=active]:bg-white data-[state=active]:text-black text-zinc-200 hover:text-white transition-colors"
+              >
                 Créditos Personales
               </TabsTrigger>
-              <TabsTrigger value="specialized" className="data-[state=active]:bg-white data-[state=active]:text-black">
+              <TabsTrigger 
+                value="specialized" 
+                className="data-[state=active]:bg-white data-[state=active]:text-black text-zinc-200 hover:text-white transition-colors"
+              >
                 Productos Especializados
               </TabsTrigger>
             </TabsList>
@@ -137,52 +152,73 @@ const ProductCard = ({ product }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Collapsible 
-      className="bg-zinc-900 border border-zinc-800 p-6 rounded-sm"
-      open={isOpen}
-      onOpenChange={setIsOpen}
+    <motion.div
+      layout
+      transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
     >
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="text-xl font-medium">{product.title}</h3>
-          <p className="text-zinc-400 italic mt-1">"{product.tagline}"</p>
-          <p className="text-zinc-300 mt-3">{product.summary}</p>
+      <Collapsible 
+        className="bg-zinc-900/80 border border-zinc-700 p-6 rounded-sm hover:bg-zinc-900 transition-colors"
+        open={isOpen}
+        onOpenChange={setIsOpen}
+      >
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-xl font-medium text-white">{product.title}</h3>
+            <p className="text-zinc-200 italic mt-1 font-medium">"{product.tagline}"</p>
+            <p className="text-zinc-100 mt-3 leading-relaxed">{product.summary}</p>
+          </div>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0 mt-1 text-zinc-200 hover:text-white hover:bg-zinc-800">
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronDown className="h-4 w-4" />
+              </motion.div>
+              <span className="sr-only">Toggle</span>
+            </Button>
+          </CollapsibleTrigger>
         </div>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 mt-1">
+        
+        <AnimatePresence>
+          {isOpen && (
             <motion.div
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+              className="mt-4 pt-4 border-t border-zinc-700 overflow-hidden"
+              initial={{ opacity: 0, scaleY: 0, transformOrigin: "top" }}
+              animate={{ 
+                opacity: 1, 
+                scaleY: 1,
+                transformOrigin: "top"
+              }}
+              exit={{ 
+                opacity: 0, 
+                scaleY: 0,
+                transformOrigin: "top"
+              }}
+              transition={{ 
+                duration: 0.3,
+                ease: [0.4, 0.0, 0.2, 1]
+              }}
             >
-              <ChevronDown className="h-4 w-4" />
+              <div className="pb-2">
+                <p className="text-zinc-100 mb-4 leading-relaxed">{product.details}</p>
+                <Link href={`/productos/${product.id}`}>
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button className="bg-white text-black hover:bg-zinc-200 rounded-none px-4 py-2 text-sm font-medium shadow-lg">
+                      Ver Detalles
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </motion.div>
+                </Link>
+              </div>
             </motion.div>
-            <span className="sr-only">Toggle</span>
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-      
-      <CollapsibleContent className="mt-4 pt-4 border-t border-zinc-800">
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <p className="text-zinc-300 mb-4">{product.details}</p>
-          <Link href={`/productos/${product.id}`}>
-            <motion.div 
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Button className="bg-white text-black hover:bg-zinc-200 rounded-none px-4 py-2 text-sm">
-                Ver Detalles
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </motion.div>
-          </Link>
-        </motion.div>
-      </CollapsibleContent>
-    </Collapsible>
+          )}
+        </AnimatePresence>
+      </Collapsible>
+    </motion.div>
   );
 };
 

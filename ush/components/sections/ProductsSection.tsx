@@ -10,8 +10,8 @@ import {
   Laptop, ArrowDownUp, CircleDollarSign, Handshake, Clock, DollarSign, Info, LucideIcon
 } from 'lucide-react';
 import { LoanSimulatorModal } from '@/components/modals/LoanSimulatorModal';
-import { creditProducts, specializedProducts, financialServices, CreditProduct, FinancialService } from '@/app/data/ProductsData';
-import { motion } from 'framer-motion';
+import { creditProducts, specializedProducts, financialServices } from '@/app/data/ProductData';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Icon mapping for products and services
 const iconMap: Record<string, LucideIcon> = {
@@ -43,37 +43,66 @@ export const EnhancedProductsSection: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      scale: 0.95
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      scale: 0.95,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn"
       }
     }
   };
 
   // Function to render product cards
-  const renderProductCards = (products: (CreditProduct | FinancialService)[]) => {
+  const renderProductCards = (products: (CreditProduct | FinancialService)[], tabKey: string) => {
     return (
       <motion.div 
+        key={tabKey}
         className="grid grid-cols-1 md:grid-cols-2 gap-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        exit="exit"
       >
-        {products.map((product) => {
+        {products.map((product, index) => {
           const ProductIcon = iconMap[product.id] || Info;
           
           return (
-            <motion.div key={product.id} variants={itemVariants}>
-              <Card className="bg-zinc-900 border-zinc-800 text-white h-full">
+            <motion.div 
+              key={product.id} 
+              variants={itemVariants}
+              custom={index}
+            >
+              <Card className="bg-zinc-900 border-zinc-800 text-white h-full hover:border-zinc-700 transition-colors">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -167,17 +196,19 @@ export const EnhancedProductsSection: React.FC = () => {
             </TabsList>
           </div>
 
-          <TabsContent value="creditos">
-            {renderProductCards(creditProducts)}
-          </TabsContent>
+          <AnimatePresence mode="wait">
+            <TabsContent value="creditos" key="creditos-content">
+              {activeTab === 'creditos' && renderProductCards(creditProducts, 'creditos')}
+            </TabsContent>
 
-          <TabsContent value="especializados">
-            {renderProductCards(specializedProducts)}
-          </TabsContent>
+            <TabsContent value="especializados" key="especializados-content">
+              {activeTab === 'especializados' && renderProductCards(specializedProducts, 'especializados')}
+            </TabsContent>
 
-          <TabsContent value="servicios">
-            {renderProductCards(financialServices)}
-          </TabsContent>
+            <TabsContent value="servicios" key="servicios-content">
+              {activeTab === 'servicios' && renderProductCards(financialServices, 'servicios')}
+            </TabsContent>
+          </AnimatePresence>
         </Tabs>
       </div>
     </section>
