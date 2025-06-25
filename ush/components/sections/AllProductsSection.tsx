@@ -6,7 +6,7 @@ import {
   Laptop, ArrowDownUp, CircleDollarSign, Handshake, Clock, DollarSign, 
   ChevronRight, TrendingUp, Shield, Zap, Info, LucideIcon
 } from 'lucide-react';
-import { creditProducts, specializedProducts, financialServices, CreditProduct, FinancialService } from '@/app/data/ProductsData';
+import { creditProducts, specializedProducts, financialServices, CreditProduct, FinancialService } from '@/app/data/ProductData';
 
 // Function to convert product ID to slug format
 const getProductSlug = (productId: string): string => {
