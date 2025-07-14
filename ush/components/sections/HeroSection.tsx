@@ -79,13 +79,15 @@ export const HeroSection = () => {
               </Dialog>
               
               <motion.div whileHover={subtleHover}>
-                <Button 
-                  variant="outline" 
-                  className="border-zinc-700 bg-transparent text-white hover:bg-zinc-900 hover:text-white rounded-none h-14 px-6 text-sm font-medium transition-colors flex items-center justify-center w-full"
-                >
-                  Nuestro Enfoque
-                  <Shield className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href="/nuestro-enfoque">
+                  <Button 
+                    variant="outline" 
+                    className="border-zinc-700 bg-transparent text-white hover:bg-zinc-900 hover:text-white rounded-none h-14 px-6 text-sm font-medium transition-colors flex items-center justify-center w-full"
+                  >
+                    Nuestro Enfoque
+                    <Shield className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>
